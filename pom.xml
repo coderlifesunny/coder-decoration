@@ -10,6 +10,10 @@
 
     <modules>
         <module>decoration-common</module>
+        <module>decoration-biz</module>
+        <module>decoration-dao</module>
+        <module>decoration-service</module>
+        <module>decoration-web</module>
     </modules>
 
     <name>coder-decoration</name>
