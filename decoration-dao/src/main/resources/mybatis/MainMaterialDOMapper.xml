@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decoration.dao.mapper.MainMaterialDOMapper">
+  <resultMap id="BaseResultMap" type="com.decoration.dao.entity.MainMaterialDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="operate_user" jdbcType="VARCHAR" property="operateUser" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="yn" jdbcType="TINYINT" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type, status, operate_user, created, modified, yn
+  </sql>
+
+  <insert id="insert" parameterType="com.decoration.dao.entity.MainMaterialDO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into main_material (name, type, status,
+      operate_user, created, modified,
+      yn)
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, #{status,jdbcType=SMALLINT},
+      #{operateUser,jdbcType=VARCHAR}, now(),now(), 1)
+  </insert>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> FROM main_material where yn=1 and status=1
+  </select>
+</mapper>

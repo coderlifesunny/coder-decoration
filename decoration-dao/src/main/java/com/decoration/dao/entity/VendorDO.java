@@ -1,0 +1,46 @@
+package com.decoration.dao.entity;
+
+import lombok.Data;
+
+/**
+ * @author
+ */
+@Data
+public class VendorDO extends BaseDO {
+
+    /**
+     * 供商名称（合作商家）
+     */
+    private String companyName;
+
+    /**
+     * 联系人
+     */
+    private String contactName;
+
+    /**
+     * l联系电话
+     */
+    private String contactTel;
+
+    /**
+     * 联系地址
+     */
+    private String contactAdd;
+
+    /**
+     * 经营的材料列表
+     */
+    private String materialIds;
+
+    /**
+     * 业务状态:1有效 0：无效
+     */
+    private Short status;
+
+    /**
+     * 操作者
+     */
+    private String operateUser;
+
+}

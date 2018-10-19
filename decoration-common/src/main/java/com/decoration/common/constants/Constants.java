@@ -8,6 +8,13 @@ package com.decoration.common.constants;
  */
 public class Constants {
 
+
+    public static class ReturnMsg {
+        public static final String SUCCESS = "success";
+
+        public static final String FAILED = "failed";
+    }
+
     /**
      * 业务异常编码
      */

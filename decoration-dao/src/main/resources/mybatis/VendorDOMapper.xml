@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decoration.dao.mapper.VendorDOMapper">
+  <resultMap id="BaseResultMap" type="com.decoration.dao.entity.VendorDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_tel" jdbcType="VARCHAR" property="contactTel" />
+    <result column="contact_add" jdbcType="VARCHAR" property="contactAdd" />
+    <result column="material_ids" jdbcType="VARCHAR" property="materialIds" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="operate_user" jdbcType="VARCHAR" property="operateUser" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="yn" jdbcType="TINYINT" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_name, contact_name, contact_tel, contact_add, material_ids, status,
+    operate_user, created, modified, yn
+  </sql>
+
+  <insert id="insert" parameterType="com.decoration.dao.entity.VendorDO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into vendor (company_name, contact_name, contact_tel,
+      contact_add, material_ids, status,
+      operate_user, created, modified, 
+      yn)
+    values (#{companyName,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, 
+      #{contactAdd,jdbcType=VARCHAR}, #{materialIds,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT},
+      #{operateUser,jdbcType=VARCHAR}, now(),now(), 1)
+  </insert>
+
+</mapper>

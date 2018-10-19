@@ -47,7 +47,7 @@ public abstract class BaseController {
      * @return
      */
     protected <T> HttpResult<T> success(T data) {
-        return success(null, data);
+        return success(Constants.ReturnMsg.SUCCESS, data);
     }
 
     /**

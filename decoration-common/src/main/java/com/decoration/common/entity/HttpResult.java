@@ -1,5 +1,7 @@
 package com.decoration.common.entity;
 
+import com.decoration.common.constants.Constants;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +21,7 @@ public class HttpResult<T> implements Serializable {
 
     private String code;
 
-    private String msg;
+    private String msg = Constants.ReturnMsg.SUCCESS;
 
     private T data;
 
