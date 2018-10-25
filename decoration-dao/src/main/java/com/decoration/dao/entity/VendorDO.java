@@ -6,7 +6,7 @@ import lombok.Data;
  * @author
  */
 @Data
-public class VendorDO extends BaseDO {
+public class VendorDO extends BaseOperatorDO {
 
     /**
      * 供商名称（合作商家）
@@ -39,8 +39,8 @@ public class VendorDO extends BaseDO {
     private Short status;
 
     /**
-     * 操作者
+     * 备注信息
      */
-    private String operateUser;
+    private String remark;
 
 }

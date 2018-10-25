@@ -9,13 +9,14 @@
     <result column="contact_add" jdbcType="VARCHAR" property="contactAdd" />
     <result column="material_ids" jdbcType="VARCHAR" property="materialIds" />
     <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="operate_user" jdbcType="VARCHAR" property="operateUser" />
     <result column="created" jdbcType="TIMESTAMP" property="created" />
     <result column="modified" jdbcType="TIMESTAMP" property="modified" />
     <result column="yn" jdbcType="TINYINT" property="yn" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, company_name, contact_name, contact_tel, contact_add, material_ids, status,
+    id, company_name, contact_name, contact_tel, contact_add, material_ids, status,remark,
     operate_user, created, modified, yn
   </sql>
 
@@ -24,11 +25,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into vendor (company_name, contact_name, contact_tel,
-      contact_add, material_ids, status,
+      contact_add, material_ids, status,remark,
       operate_user, created, modified, 
       yn)
     values (#{companyName,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, 
-      #{contactAdd,jdbcType=VARCHAR}, #{materialIds,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT},
+      #{contactAdd,jdbcType=VARCHAR}, #{materialIds,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT},#{remark,jdbcType=VARCHAR}
       #{operateUser,jdbcType=VARCHAR}, now(),now(), 1)
   </insert>
 
