@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author Guangcai.xu
  * @Date 2018/10/19 15:49
  */
-@RequestMapping("/material")
+@RequestMapping("/decoration/material")
 @RestController
 public class MainMaterialController extends BaseController {
 
     @Autowired
     private MainMaterialBO mainMaterialBO;
 
-    @GetMapping("/list")
+    @GetMapping(value = {"", "/list"})
     public HttpResult list() {
         return success(mainMaterialBO.findAll());
     }

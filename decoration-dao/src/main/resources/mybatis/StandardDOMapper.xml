@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decoration.dao.mapper.StandardDOMapper">
+    <resultMap id="BaseResultMap" type="com.decoration.dao.entity.StandardDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="status" jdbcType="SMALLINT" property="status"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="operate_user" jdbcType="VARCHAR" property="operateUser"/>
+        <result column="created" jdbcType="TIMESTAMP" property="created"/>
+        <result column="modified" jdbcType="TIMESTAMP" property="modified"/>
+        <result column="yn" jdbcType="TINYINT" property="yn"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, status, remark, operate_user, created, modified, yn
+  </sql>
+
+    <insert id="insert" parameterType="com.decoration.dao.entity.StandardDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into standard (name, status, remark,
+        operate_user, created, modified,
+        yn)
+        values (#{name,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR},
+        #{operateUser,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP},
+        #{yn,jdbcType=TINYINT})
+    </insert>
+
+    <select id="selectPage" resultMap="BaseResultMap" parameterType="com.decoration.common.param.StandardQueryParam">
+        select <include refid="Base_Column_List"/> from standard
+        where yn=1
+        <if test="param.status != null and param.status != -999">
+            and status = #{param.status}
+        </if>
+        <if test='param.name != null and param.name != ""'>
+            and name like CONCAT('%', #{param.name,jdbcType=VARCHAR}, '%')
+        </if>
+        ORDER BY modified desc
+    </select>
+
+</mapper>

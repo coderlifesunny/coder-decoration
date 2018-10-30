@@ -49,9 +49,5 @@ public class Constants {
          */
         public final static String SYSTEM_ERR = "5000";
 
-        /**
-         * 接口异常
-         */
-        public final static String RPC_EXCEPTION_ERR = "5004";
     }
 }
