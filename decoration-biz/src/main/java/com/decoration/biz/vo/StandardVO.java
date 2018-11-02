@@ -1,13 +1,13 @@
 package com.decoration.biz.vo;
 
+import com.decoration.common.enums.StateEnum;
+import com.decoration.common.util.DateUtil;
 import com.decoration.dao.entity.StandardDO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
-
-import java.util.Date;
 
 /**
  * Description: 规格VO对象
@@ -25,9 +25,13 @@ public class StandardVO {
 
     private String name;
 
+    private String remark;
+
     private Short status;
 
-    private Date modified;
+    private String tag;
+
+    private String modified;
 
     private String operateUser;
 
@@ -36,6 +40,8 @@ public class StandardVO {
             return this;
         }
         BeanUtils.copyProperties(standardDO, this);
+        this.setModified(DateUtil.format(standardDO.getModified()));
+        this.setTag(StateEnum.byValue(status.intValue()).getName());
         return this;
     }
 

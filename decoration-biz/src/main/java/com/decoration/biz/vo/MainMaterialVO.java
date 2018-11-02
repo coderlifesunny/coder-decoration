@@ -35,6 +35,8 @@ public class MainMaterialVO {
      */
     private String typeStr;
 
+    private String imgUrl;
+
     public String getTypeStr() {
         return MainMaterialTypeEnum.byValue(type.intValue()).getName();
     }

@@ -1,8 +1,9 @@
 package com.decoration.biz.bean;
 
+import com.decoration.biz.param.StandardDmlParam;
 import com.decoration.biz.vo.StandardVO;
 import com.decoration.common.entity.PagedList;
-import com.decoration.common.exception.BusinessException;
+import com.decoration.common.exception.ParamException;
 import com.decoration.common.param.StandardQueryParam;
 import com.decoration.dao.entity.StandardDO;
 import com.decoration.service.bean.StandardService;
@@ -10,7 +11,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -44,5 +47,35 @@ public class StandardBO {
         }
         List<StandardVO> transform = Lists.transform(dos, tuple -> new StandardVO().build(tuple));
         return new PagedList<>(transform, page.getTotal(), page.getPageSize(), page.getPageNum());
+    }
+
+    /**
+     * 数据操作
+     *
+     * @param param
+     * @return
+     */
+    public int dmlOperate(StandardDmlParam param) {
+        //获取登录用户
+        StandardDO standardDO = new StandardDO();
+        BeanUtils.copyProperties(param, standardDO);
+        standardDO.setOperateUser("sys");
+        int cnt = 0;
+        try {
+            switch (param.getDmlEnum()) {
+                case INSERT:
+                    cnt = standardService.add(standardDO);
+                    break;
+                case DELETE:
+                    cnt = standardService.delete(param.getId());
+                    break;
+                case UPDATE:
+                    cnt = standardService.modify(standardDO);
+                    break;
+            }
+        } catch (DuplicateKeyException exception) {
+            throw new ParamException("规格：" + standardDO.getName() + "已存在，保存失败！");
+        }
+        return cnt;
     }
 }

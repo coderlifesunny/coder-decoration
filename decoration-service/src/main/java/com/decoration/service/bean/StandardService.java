@@ -15,4 +15,8 @@ public interface StandardService {
     int add(StandardDO standardDO);
 
     List<StandardDO> findPage(StandardQueryParam param);
+
+    int modify(StandardDO standardDO);
+
+    int delete(Integer id);
 }

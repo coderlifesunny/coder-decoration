@@ -28,6 +28,6 @@ public class MainMaterialBO {
      */
     public List<MainMaterialVO> findAll() {
         List<MainMaterialDO> allDO = mainMaterialService.findAll();
-        return Lists.newArrayList(Lists.transform(allDO, tuple -> MainMaterialVO.builder().id(tuple.getId()).name(tuple.getName()).type(tuple.getType()).build()));
+        return Lists.newArrayList(Lists.transform(allDO, tuple -> MainMaterialVO.builder().id(tuple.getId()).name(tuple.getName()).type(tuple.getType()).imgUrl(tuple.getImgUrl()).build()));
     }
 }

@@ -23,4 +23,6 @@ public class MainMaterialDO extends BaseOperatorDO {
      */
     private Short status;
 
+    private String imgUrl;
+
 }

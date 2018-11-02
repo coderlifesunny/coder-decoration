@@ -30,4 +30,14 @@ public class StandardServiceImpl implements StandardService {
     public List<StandardDO> findPage(StandardQueryParam param) {
         return standardDOMapper.selectPage(param);
     }
+
+    @Override
+    public int modify(StandardDO standardDO) {
+        return standardDOMapper.updateByKeySelective(standardDO);
+    }
+
+    @Override
+    public int delete(Integer id) {
+        return standardDOMapper.deleteByKey(id);
+    }
 }

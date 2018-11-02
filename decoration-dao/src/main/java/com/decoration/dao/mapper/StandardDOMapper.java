@@ -10,4 +10,8 @@ public interface StandardDOMapper {
     int insert(StandardDO record);
 
     List<StandardDO> selectPage(@Param("param") StandardQueryParam param);
+
+    int updateByKeySelective(StandardDO record);
+
+    int deleteByKey(Integer id);
 }
