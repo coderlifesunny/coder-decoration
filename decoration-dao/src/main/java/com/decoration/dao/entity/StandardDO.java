@@ -9,7 +9,7 @@ import lombok.Data;
 public class StandardDO extends BaseOperatorDO {
 
     /**
-     * 主材名称
+     * 规格名称
      */
     private String name;
 

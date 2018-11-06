@@ -7,10 +7,7 @@ import com.decoration.common.enums.DmlEnum;
 import com.decoration.common.param.StandardQueryParam;
 import com.decoration.web.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Description:
@@ -46,5 +43,10 @@ public class StandardController extends BaseController {
     public HttpResult modify(@RequestBody StandardDmlParam param) {
         param.setDmlEnum(DmlEnum.UPDATE);
         return success(standardBO.dmlOperate(param));
+    }
+
+    @GetMapping("/byName")
+    public HttpResult findByName(@RequestParam String name) {
+        return success(standardBO.findByName(name));
     }
 }

@@ -50,6 +50,20 @@ public class StandardBO {
     }
 
     /**
+     * 根据规格名称模糊查询信息
+     *
+     * @param name
+     * @return
+     */
+    public List<StandardVO> findByName(String name) {
+        PagedList<StandardVO> page = this.findPage(new StandardQueryParam(name, -999));
+        if (page.getTotal() > 10) {
+            throw new ParamException("搜索结果过大于10条，请详细输入！");
+        }
+        return page.getList();
+    }
+
+    /**
      * 数据操作
      *
      * @param param

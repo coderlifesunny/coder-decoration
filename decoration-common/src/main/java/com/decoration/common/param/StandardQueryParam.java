@@ -1,6 +1,8 @@
 package com.decoration.common.param;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Description: 查询规格参数
@@ -9,6 +11,8 @@ import lombok.Data;
  * @Date 2018/10/30 14:50
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class StandardQueryParam extends BaseParam {
 
     /**

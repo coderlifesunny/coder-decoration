@@ -37,4 +37,52 @@
       )
   </insert>
 
+  <!--扩展了一个属性的MAP(规格名称)-->
+  <resultMap id="ExtResultMap" type="com.decoration.dao.entity.ext.MaterialItemExtDO" extends="BaseResultMap">
+    <result column="standard" property="standard"/>
+  </resultMap>
+
+  <select id="selectPage" resultMap="ExtResultMap" parameterType="com.decoration.common.param.MaterialItemQueryParam">
+    select m.*,s.name standard
+    from material_item m LEFT JOIN standard s on m.standard_id = s.id and m.yn = s.yn
+    where m.yn=1
+    <if test="param.mainId != null">
+      and m.main_id = #{param.mainId}
+    </if>
+    <if test="param.status != null and param.status != -999">
+      and m.status = #{param.status}
+    </if>
+    <if test='param.brand != null and param.brand != ""'>
+      and m.brand like CONCAT('%', #{param.brand,jdbcType=VARCHAR}, '%')
+    </if>
+    <if test='param.modelName != null and param.modelName != ""'>
+      and m.model_name like CONCAT('%', #{param.modelName,jdbcType=VARCHAR}, '%')
+    </if>
+    ORDER BY m.modified desc
+  </select>
+
+  <update id="updateByKeySelective">
+    update material_item
+    <trim prefix="set" suffixOverrides=",">
+      <if test="modelName != null">
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelRemark != null">
+        model_remark = #{modelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="operateUser != null">
+        operate_user = #{operateUser,jdbcType=VARCHAR},
+      </if>
+      modified=now()
+    </trim>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteByKey">
+    DELETE from material_item where id=#{id}
+  </delete>
+
 </mapper>
