@@ -2,7 +2,9 @@ package com.decoration.web.base;
 
 import com.decoration.common.constants.Constants;
 import com.decoration.common.entity.HttpResult;
+import com.decoration.common.utils.JWTUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -163,6 +165,14 @@ public abstract class BaseController {
         } catch (IOException e) {
             log.warn("IOException:导出数据问题：[{}]", e.getMessage(), e);
         }
+    }
+
+    /**
+     * 获取当前用户
+     * @return
+     */
+    protected String getCurrentUsername(){
+        return JWTUtil.getUsername((String) SecurityUtils.getSubject().getPrincipal());
     }
 
 

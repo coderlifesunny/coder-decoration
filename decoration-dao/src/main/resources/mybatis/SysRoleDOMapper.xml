@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decoration.dao.mapper.SysRoleDOMapper">
+  <resultMap id="BaseResultMap" type="com.decoration.dao.entity.SysRoleDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="enname" jdbcType="VARCHAR" property="enname" />
+    <result column="role_type" jdbcType="SMALLINT" property="roleType" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="operate_user" jdbcType="VARCHAR" property="operateUser" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="yn" jdbcType="TINYINT" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, enname, role_type, status, remark, operate_user, created, modified, yn
+  </sql>
+
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="com.decoration.common.param.SysUserQueryParam">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_role
+    where yn=1
+    <if test="param.roleType != null and param.roleType != -999">
+      and role_type = #{param.roleType}
+    </if>
+    <if test="param.status != null and param.status != -999">
+      and status = #{param.status}
+    </if>
+    <if test='param.name != null and param.name != ""'>
+      and name like CONCAT('%', #{param.name,jdbcType=VARCHAR}, '%')
+    </if>
+    ORDER BY modified desc
+  </select>
+
+  <select id="selectRolesByUserId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from sys_user_role ur join sys_role r on ur.role_id = r.id
+    where ur.user_id=#{userId} and r.yn=1
+  </select>
+</mapper>

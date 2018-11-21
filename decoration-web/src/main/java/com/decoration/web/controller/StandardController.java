@@ -6,6 +6,9 @@ import com.decoration.common.entity.HttpResult;
 import com.decoration.common.enums.DmlEnum;
 import com.decoration.common.param.StandardQueryParam;
 import com.decoration.web.base.BaseController;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,8 @@ public class StandardController extends BaseController {
     @Autowired
     private StandardBO standardBO;
 
+    @RequiresRoles(logical = Logical.OR, value = {"user", "admin"})
+    @RequiresPermissions("vip")
     @PostMapping(value = {"", "/list"})
     public HttpResult list(@RequestBody StandardQueryParam param) {
         return success(standardBO.findPage(param));

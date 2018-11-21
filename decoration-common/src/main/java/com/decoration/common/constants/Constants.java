@@ -15,6 +15,10 @@ public class Constants {
         public static final String FAILED = "failed";
     }
 
+    public static class Erp{
+        public static final String LOGIN_URL = "http://erp.coder.com:9090/admin/login";
+    }
+
     /**
      * 业务异常编码
      */

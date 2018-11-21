@@ -1,7 +1,7 @@
 package com.decoration.biz.vo;
 
 import com.decoration.common.enums.StateEnum;
-import com.decoration.common.util.DateUtil;
+import com.decoration.common.utils.DateUtil;
 import com.decoration.dao.entity.ext.MaterialItemExtDO;
 import lombok.AllArgsConstructor;
 import lombok.Data;

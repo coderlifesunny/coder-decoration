@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.decoration.dao.mapper.SysMenuDOMapper">
+  <resultMap id="BaseResultMap" type="com.decoration.dao.entity.SysMenuDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="parent_ids" jdbcType="VARCHAR" property="parentIds" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sort" jdbcType="DECIMAL" property="sort" />
+    <result column="href" jdbcType="VARCHAR" property="href" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="operate_user" jdbcType="VARCHAR" property="operateUser" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="yn" jdbcType="TINYINT" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parent_id, parent_ids, name, sort, href, is_show, permission, status, remark, 
+    operate_user, created, modified, yn
+  </sql>
+
+</mapper>

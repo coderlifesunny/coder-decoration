@@ -1,9 +1,8 @@
-package com.decoration.common.util;
+package com.decoration.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -21,7 +20,7 @@ import java.util.regex.Pattern;
  * @Date 2018/10/30 17:36
  */
 @Slf4j
-public class DateUtil extends DateUtils {
+public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
